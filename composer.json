@@ -1,0 +1,54 @@
+{
+    "name": "escribiendocodigo/phalcon-react-project-skeleton",
+    "type": "project",
+    "description": "Phalcon React project skeleton",
+    "keywords": [
+        "php",
+        "phalcon",
+        "react",
+        "project",
+        "skeleton"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "M4nu",
+            "email": "m4nu.coder@gmail.com",
+            "homepage": "https://github.com/escribiendocodigo"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/escribiendocodigo/phalcon-react-project-skeleton/issues",
+        "source": "https://github.com/escribiendocodigo/phalcon-react-project-skeleton"
+    },
+    "require": {
+        "php": ">=7.4",
+        "ext-pdo": "*",
+        "ext-phalcon": "^5.0.0"
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "@create-backend-project",
+            "@install-dependencies-frontend"
+        ],
+        "create-backend-project": [
+            "composer create-project escribiendocodigo/phalcon-micro-project-skeleton backend ^5.0.0"
+        ],
+        "serve-backend": [
+            "Composer\\Config::disableProcessTimeout",
+            "composer run --working-dir=./backend serve"
+        ],
+        "install-dependencies-frontend": [
+            "Composer\\Config::disableProcessTimeout",
+            "npm install --prefix ./frontend"
+        ],
+        "serve-frontend": [
+            "Composer\\Config::disableProcessTimeout",
+            "npm run dev --prefix ./frontend"
+        ],
+        "build-frontend": [
+            "Composer\\Config::disableProcessTimeout",
+            "npm run build --prefix ./frontend"
+        ]
+    }
+}
