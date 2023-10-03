@@ -21,15 +21,15 @@ my-project/
 ### Backend
 
 [Phalcon micro application](https://github.com/escribiendocodigo/phalcon-micro-project-skeleton)
-that provides a RESTful API running port 9000
+that provides a RESTful API running port 8000
 
 ### Frontend
 
-React web application running port 5173
+[Vite](https://vitejs.dev) + [React](https://react.dev) application running port 5173
 
-Configure custom [server.proxy](https://vitejs.dev/config/server-options.html#server-proxy)
+#### Proxying to a backend
 
-http://localhost:5173/api -> http://localhost:9000
+http://localhost:5173/api -> http://localhost:8000
 
 ```js
 // vite.config.js
@@ -37,11 +37,12 @@ http://localhost:5173/api -> http://localhost:9000
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-const BACKEND_PORT = process.env.BACKEND_PORT || 9000;
+const BACKEND_PORT = process.env.BACKEND_PORT || 8000;
 
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: "0.0.0.0",
     proxy: {
       "/api": {
         target: `http://127.0.0.1:${BACKEND_PORT}`,
